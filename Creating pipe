@@ -1,0 +1,9 @@
+#include<stdio.h>
+#include<unistd.h>
+
+void main()
+{
+int res;
+res=mkfifo("file01",0777);
+printf("pipe is created\n");
+}
