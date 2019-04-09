@@ -45,4 +45,40 @@ int main()
         read(fd2[0], rev_str, 100); 
         printf("REVERSED STRING IS :  %s\n", rev_str); 
         close(fd2[0]); 
-    }
+    } 
+    else
+    { 
+        close(fd1[1]);   
+        char rev_str[100]; 
+        read(fd1[0], rev_str, 100); 
+        
+        int i; 
+        strcpy(rev_str,input_str );
+        
+       for(i=0;i<strlen(rev_str);i++) { 
+
+        if(rev_str[i]>='A'&&rev_str[i]<='Z'){ 
+
+         rev_str[i]+=32;            
+  
+    } else if (rev_str[i]>='a'&&rev_str[i]<='z') { 
+
+        rev_str[i]-=32;             
+
+        }
+      else if(rev_str[i]=='\0')
+        {
+         rev_str[i]='\0';
+}
+
+ 
+    }  
+
+        close(fd1[0]); 
+        close(fd2[0]); 
+        write(fd2[1], rev_str, strlen(rev_str)+1); 
+        close(fd2[1]); 
+  
+        exit(0); 
+    } 
+}
