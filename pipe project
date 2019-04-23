@@ -7,13 +7,12 @@
   
 int main() 
 { 
-    int fd1[2];  // Used to store two ends of first pipe 
-    int fd2[2];  // Used to store two ends of second pipe 
+    int fd1[2];  
+    int fd2[2];  
 
     char input_str[100]; 
     pid_t p; 
-  
-    if (pipe(fd1)==-1) 
+     if (pipe(fd1)==-1) 
     { 
         fprintf(stderr, "PIPE FAILED\n" ); 
         return 1; 
@@ -23,8 +22,10 @@ int main()
         fprintf(stderr, "PIPE FAILED\n" ); 
         return 1; 
     } 
+   
   
     fgets(input_str, 100, stdin); 
+
     p = fork(); 
   
     if (p < 0) 
@@ -39,9 +40,9 @@ int main()
         close(fd1[0]);   
         write(fd1[1], input_str, strlen(input_str)+1); 
         close(fd1[1]); 
-        wait(NULL); 
+        wait(NULL);
   
-        close(fd2[1]);  
+        close(fd2[1]);
         read(fd2[0], rev_str, 100); 
         printf("REVERSED STRING IS :  %s\n", rev_str); 
         close(fd2[0]); 
@@ -53,7 +54,7 @@ int main()
         read(fd1[0], rev_str, 100); 
         
         int i; 
-        strcpy(rev_str,input_str );
+        
         
        for(i=0;i<strlen(rev_str);i++) { 
 
